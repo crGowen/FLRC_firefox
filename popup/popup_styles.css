@@ -1,0 +1,29 @@
+body {
+   width: 3.5rem;
+   height: 3.5rem;
+   margin: 0;
+   padding: 0;
+   background-color: #444;
+}
+
+#statusIndicator{
+   width: 2.5rem;
+   height: 2.5rem;
+   margin: 0.5rem 0.5rem;
+   padding: 0;
+   background-color: #00f;
+   border-radius: 1.25rem;
+   filter: drop-shadow(0 0 0.3rem #00f);
+}
+
+#statusIndicator h1{
+   font-family: sans-serif;
+   font-weight: bold;
+   color: black;
+   font-size: 0.9rem;
+   line-height: 2.5rem;
+   text-align: center;
+   vertical-align: middle;
+   padding: 0;
+   margin: 0;
+}
