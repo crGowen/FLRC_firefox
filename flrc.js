@@ -1,6 +1,6 @@
 var indicator;
 
-if (document.getElementById("indicatorIcon")) {
+if (document.getElementById("flrcIndicatorIcon")) {
    indicator = true;
 } else {
    indicator = false;
@@ -57,14 +57,14 @@ function monitorText(){
 function checkTextForChange(){
    if (document.activeElement.value!=textSincePreviousParse){
       if (document.activeElement.value==textSincePreviousTick) {
-         document.getElementById("indicatorIcon").src = browser.runtime.getURL("statusIcons/FLRC_48G.png");
+         document.getElementById("flrcIndicatorIcon").src = browser.runtime.getURL("statusIcons/FLRC_48G.png");
          document.activeElement.value = parseText(document.activeElement.value);
          textSincePreviousParse = document.activeElement.value;
       } else {
-         document.getElementById("indicatorIcon").src = browser.runtime.getURL("statusIcons/FLRC_48R.png");
+         document.getElementById("flrcIndicatorIcon").src = browser.runtime.getURL("statusIcons/FLRC_48R.png");
       }
    } else {
-      document.getElementById("indicatorIcon").src = browser.runtime.getURL("statusIcons/FLRC_48G.png");
+      document.getElementById("flrcIndicatorIcon").src = browser.runtime.getURL("statusIcons/FLRC_48G.png");
    }
    textSincePreviousTick = document.activeElement.value;
 }
@@ -416,7 +416,7 @@ function addIndicator() {
    var pos = document.activeElement.getBoundingClientRect();
 
    var ind = document.createElement("img");
-   ind.id = "indicatorIcon";
+   ind.id = "flrcIndicatorIcon";
    ind.style.display = "block";
    ind.style.position = "absolute";
    ind.style.top = pos.top + 5 + "px";
@@ -431,6 +431,6 @@ function addIndicator() {
 }
 
 function removeIndicator(){
-   var ind = document.getElementById("indicatorIcon");
+   var ind = document.getElementById("flrcIndicatorIcon");
    ind.parentNode.removeChild(ind);
 }
