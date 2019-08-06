@@ -1,4 +1,10 @@
-var indicator = false;
+var indicator;
+
+if (document.getElementById("indicatorIcon")) {
+   indicator = true;
+} else {
+   indicator = false;
+}
 
 var textSincePreviousParse = "";
 var textSincePreviousTick = "";
@@ -70,10 +76,10 @@ function parseText(text) {
    for (i = 0; i < text.length; i++) {
       switch(text[i]) {
          case 'A':
-         retStr += "A";
+         retStr += "А";
          break;
          case 'a':
-         retStr += "a";
+         retStr += "а";
          break;
 
          case 'B':
