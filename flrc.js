@@ -338,9 +338,11 @@ function parseText(text) {
          break;
 
          case 'H':
+         case 'X':
          retStr += "Х";
          break;
          case 'h':
+         case 'x':
          retStr += "х";
          break;
 
@@ -350,10 +352,10 @@ function parseText(text) {
                retStr += "Ч";
                i++;
             } else {
-               retStr += "Ц";
+               retStr += "C";
             }
          } else {
-            retStr += "Ц";
+            retStr += "C";
          }
          break;
          case 'c':
@@ -362,10 +364,10 @@ function parseText(text) {
                retStr += "ч";
                i++;
             } else {
-               retStr += "ц";
+               retStr += "с";
             }
          } else {
-            retStr += "ц";
+            retStr += "с";
          }
          break;
 
