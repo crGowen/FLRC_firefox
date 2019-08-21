@@ -3,7 +3,7 @@ var isActive = false;
 var sender = browser.runtime.sendMessage({flrcReq: "requestStatus"});
 sender.then(function (msg) {setStatus(msg.flrcActive=="t");}, function() {console.log("FLRC: Send Error");});
 
-
+// communication with background, get the current ON/OFF status from the background.js
 function getStatus() {
    var indicator = document.getElementById("statusIndicator");
    if (isActive) {
@@ -17,11 +17,13 @@ function getStatus() {
    }
 }
 
+// communication with background, SET the current ON/OFF status to the background.js
 function setStatus(inputStatus){
    isActive = inputStatus;
    getStatus();
 }
 
+// call this when the user mouse clicks the ON/OFF button
 function toggleStatus() {
    if (isActive) {
       setStatus(false);

@@ -1,5 +1,6 @@
 var indicator;
 
+// check if there is an existing indicator icon
 if (document.getElementById("flrcIndicatorIcon")) {
    indicator = true;
 } else {
@@ -9,6 +10,7 @@ if (document.getElementById("flrcIndicatorIcon")) {
 var textSincePreviousParse = "";
 var textSincePreviousTick = "";
 
+// a "tick" is just a 1.2 second interval, once per tick get the status of the extension (communication with background) and deal with the response in handleResponse(msg) function
 var tick = setInterval(function() {
    var sender = browser.runtime.sendMessage({flrcReq: "requestStatus"});
    sender.then(handleResponse, function(msg) {
@@ -17,6 +19,7 @@ var tick = setInterval(function() {
    });
 }, 1200);
 
+// function for communication with the background, in short it checks if the user has the extension set to ON or OFF in the popup
 function handleResponse(msg){
    if(msg.flrcActive=="t"){
       monitorText();
@@ -26,6 +29,8 @@ function handleResponse(msg){
    }
 }
 
+// each tick, if the user background reports the extension is active, and if the current active element in the DOM is a valid text field,
+// then the indicator icon should be displayed in the top-right of the text field, and call the function checkTextForChange()
 function monitorText(){
    if(document.activeElement.nodeName=="INPUT") {
       if (document.activeElement.type=="text") {
@@ -54,6 +59,9 @@ function monitorText(){
    }
 }
 
+// if the text has changed since the previous parse, but the text has not changed since the last two ticks (indicating the user has typed out some characters and now paused) then parse the text
+// if the text has changed since the previous parse, as well as changed since the last tick (indicating the user is currently typing out some characters), set the indicator to orange and do nothing else
+// in short: do NOT intrude on the user while they are typing, wait for them to pause before parsing the text to Russian characters
 function checkTextForChange(){
    if (document.activeElement.value!=textSincePreviousParse){
       if (document.activeElement.value==textSincePreviousTick) {
@@ -69,6 +77,7 @@ function checkTextForChange(){
    textSincePreviousTick = document.activeElement.value;
 }
 
+// parse latin characters to russian characters based on their phonetic
 function parseText(text) {
    var retStr = "";
 
@@ -412,6 +421,7 @@ function parseText(text) {
    return retStr;
 }
 
+// add the indicator icon the textbox
 function addIndicator() {
    var pos = document.activeElement.getBoundingClientRect();
 
@@ -430,6 +440,7 @@ function addIndicator() {
    document.body.appendChild(ind);
 }
 
+// remove the indicator icon the textbox
 function removeIndicator(){
    var ind = document.getElementById("flrcIndicatorIcon");
    ind.parentNode.removeChild(ind);
