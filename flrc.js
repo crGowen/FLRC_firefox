@@ -193,10 +193,10 @@ function parseText(text) {
                retStr += "И";
                i++;
             } else {
-               retStr += "Э";
+               retStr += "Е";
             }
          } else {
-            retStr += "Э";
+            retStr += "Е";
          }
          break;
          case 'e':
@@ -205,10 +205,10 @@ function parseText(text) {
                retStr += "и";
                i++;
             } else {
-               retStr += "э";
+               retStr += "е";
             }
          } else {
-            retStr += "э";
+            retStr += "е";
          }
          break;
 
@@ -411,6 +411,12 @@ function parseText(text) {
             if (text[i+1] == "#") {
                retStr += "Ъ";
                i++;
+            } else if (text[i+1] == "E") {
+               retStr += "Э";
+               i++;
+            } else if (text[i+1] == "e") {
+               retStr += "э";
+               i++;
             } else {
                retStr += "ъ";
             }
@@ -418,7 +424,6 @@ function parseText(text) {
             retStr += "ъ";
          }
          break;
-
 
          default:
          retStr += text[i];
