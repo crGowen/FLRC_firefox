@@ -3,7 +3,7 @@
    "name": "Fast Latin-to-Russian Characters",
    "version": "1.2",
 
-   "description": "When enabled, will automatically convert Latin phonetics to Russian alphabet characters as you type. Example: 'pozhaluysta' converts to 'пожалуйста'.",
+   "description": "Automatically converts Latin phonetics to Russian characters as you type. E.g.: 'pozhaluysta' converts to 'пожалуйста'.",
 
    "icons": {"48": "icons/FLRC_48.png"},
 
