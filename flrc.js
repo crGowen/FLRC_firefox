@@ -381,16 +381,22 @@ function parseText(text) {
          break;
 
          case 'I':
-         retStr += "Ы";
+         retStr += "И";
          break;
          case 'i':
-         retStr += "ы";
+         retStr += "и";
          break;
 
          case '\'':
          if (i+1<text.length) {
             if (text[i+1] == "\'") {
                retStr += "Ь";
+               i++;
+            } else if (text[i+1] == "I") {
+               retStr += "Ы";
+               i++;
+            } else if (text[i+1] == "i") {
+               retStr += "ы";
                i++;
             } else {
                retStr += "ь";

@@ -1,9 +1,9 @@
 {
    "manifest_version": 2,
    "name": "Fast Latin-to-Russian Characters",
-   "version": "1.0",
+   "version": "1.02",
 
-   "description": "When enabled, will automatically convert a latin phonetic of a Russian alphabet character as you type.",
+   "description": "When enabled, will automatically convert a Latin phonetic of a Russian alphabet character as you type.",
 
    "icons": {"48": "icons/FLRC_48.png"},
 
