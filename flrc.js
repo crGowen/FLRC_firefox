@@ -440,8 +440,8 @@ function addIndicator() {
    ind.id = "flrcIndicatorIcon";
    ind.style.display = "block";
    ind.style.position = "absolute";
-   ind.style.top = pos.top + 5 + "px";
-   ind.style.left = pos.right - 20 + "px";
+   ind.style.top = pos.top + 5 + window.scrollY + "px";
+   ind.style.left = pos.right - 20 + window.scrollX + "px";
    ind.style.width = "15px";
    ind.style.height = "15px";
    ind.style.borderRadius = "2px";
