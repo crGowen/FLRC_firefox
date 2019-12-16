@@ -26,5 +26,14 @@
       "js":["flrc.js"],
       "all_frames": false,
       "matches": ["<all_urls>"]
-      }]
+      }],
+
+      "commands": {
+         "toggle-FLRC": {
+            "suggested_key": {
+               "default": "Ctrl+Shift+L"
+            },
+            "description": "Toggle FLRC on and off"
+         }
+      }
 }
