@@ -68,6 +68,8 @@ function checkTextForChange(){
          document.getElementById("flrcIndicatorIcon").src = browser.runtime.getURL("statusIcons/FLRC_48G.png");
          document.activeElement.value = parseText(document.activeElement.value);
          textSincePreviousParse = document.activeElement.value;
+         var evt = new Event("input", {"bubbles":true, "cancelable":true});
+         setTimeout(()=>{document.activeElement.dispatchEvent(evt);}, 200);
       } else {
          document.getElementById("flrcIndicatorIcon").src = browser.runtime.getURL("statusIcons/FLRC_48R.png");
       }
@@ -120,6 +122,7 @@ function parseText(text) {
          break;
 
          case 'Y':
+         case 'J':
          if (i+1<text.length) {
             if (text[i+1] == 'E') {
                retStr += "Е";
@@ -141,6 +144,7 @@ function parseText(text) {
          }
          break;
          case 'y':
+         case 'j':
          if (i+1<text.length) {
             if (text[i+1] == 'e') {
                retStr += "е";
@@ -213,10 +217,10 @@ function parseText(text) {
          break;
 
          case 'K':
-         retStr += "К";
+            retStr += "К";
          break;
          case 'k':
-         retStr += "к";
+            retStr += "к";
          break;
 
          case 'L':
@@ -361,10 +365,10 @@ function parseText(text) {
                retStr += "Ч";
                i++;
             } else {
-               retStr += "C";
+               retStr += "К";
             }
          } else {
-            retStr += "C";
+            retStr += "К";
          }
          break;
          case 'c':
@@ -373,10 +377,10 @@ function parseText(text) {
                retStr += "ч";
                i++;
             } else {
-               retStr += "с";
+               retStr += "к";
             }
          } else {
-            retStr += "с";
+            retStr += "к";
          }
          break;
 
