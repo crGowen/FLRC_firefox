@@ -2,8 +2,6 @@
 // (e.g. user sets the extension to OFF or ON in the popup window) - background.js here provides a simple interface for the status to be communicated to instances of the FLRC running in tabs
 
 class FlrcBackground {
-   static bgActive;
-
    static handleMsg(msg, sender, sendResponse) {
       if (msg.flrcReq) {
          if (FlrcBackground.bgActive) {

@@ -1,7 +1,4 @@
 class FlrcPopup {
-   static isActive;
-   static sender;
-
    static init() {
       FlrcPopup.isActive = false;
 
