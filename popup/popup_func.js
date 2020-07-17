@@ -1,38 +1,43 @@
-var isActive = false;
+class FlrcPopup {
+   static isActive;
+   static sender;
 
-var sender = browser.runtime.sendMessage({flrcReq: "requestStatus"});
-sender.then(function (msg) {setStatus(msg.flrcActive=="t");}, function() {console.log("FLRC: Send Error");});
+   static init() {
+      FlrcPopup.isActive = false;
 
-// communication with background, get the current ON/OFF status from the background.js
-function getStatus() {
-   var indicator = document.getElementById("statusIndicator");
-   if (isActive) {
-      indicator.style.backgroundColor = "#0f0";
-      indicator.style.filter = "drop-shadow(0 0 0.3rem #0f0)";
-      indicator.getElementsByTagName("h1")[0].innerText = "ON";
-   } else {
-      indicator.style.backgroundColor = "#f00";
-      indicator.style.filter = "drop-shadow(0 0 0.3rem #f00)";
-      indicator.getElementsByTagName("h1")[0].innerText = "OFF";
+      FlrcPopup.sender = browser.runtime.sendMessage({flrcReq: "requestStatus"});
+      FlrcPopup.sender.then((msg) => FlrcPopup.setStatus(msg.flrcActive=="t"), () => console.error("FLRC: Send Error"));
+
+      document.getElementById("statusIndicator").addEventListener("click", FlrcPopup.toggleStatus);
+   }
+
+   static getStatus() {
+      var indicator = document.getElementById("statusIndicator");
+      if (FlrcPopup.isActive) {
+         indicator.style.backgroundColor = "#0f0";
+         indicator.style.filter = "drop-shadow(0 0 0.3rem #0f0)";
+         indicator.getElementsByTagName("h1")[0].innerText = "ON";
+      } else {
+         indicator.style.backgroundColor = "#f00";
+         indicator.style.filter = "drop-shadow(0 0 0.3rem #f00)";
+         indicator.getElementsByTagName("h1")[0].innerText = "OFF";
+      }
+   }
+
+   static setStatus(status) {
+      FlrcPopup.isActive = status;
+      FlrcPopup.getStatus();
+   }
+
+   static toggleStatus() {
+      if (FlrcPopup.isActive) {
+         FlrcPopup.setStatus(false);
+         browser.runtime.sendMessage({flrcUpdate: "f"});
+      } else {
+         FlrcPopup.setStatus(true);
+         browser.runtime.sendMessage({flrcUpdate: "t"});
+      }
    }
 }
 
-// communication with background, SET the current ON/OFF status to the background.js
-function setStatus(inputStatus){
-   isActive = inputStatus;
-   getStatus();
-}
-
-// call this when the user mouse clicks the ON/OFF button
-function toggleStatus() {
-   if (isActive) {
-      setStatus(false);
-      browser.runtime.sendMessage({flrcUpdate: "f"});
-   } else {
-      setStatus(true);
-      browser.runtime.sendMessage({flrcUpdate: "t"});
-   }
-}
-
-document.getElementById("statusIndicator").addEventListener("click", toggleStatus);
-getStatus();
+FlrcPopup.init();
