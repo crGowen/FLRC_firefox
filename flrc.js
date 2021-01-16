@@ -57,17 +57,19 @@ class Flrc {
       }
 
       if (document.activeElement.nodeName=="INPUT") {
-         if (document.activeElement.type!="text" && document.activeElement.type!="search") {
-            Flrc.removeIndicator();
+         if (document.activeElement.type=="text" || document.activeElement.type=="search") {
+            Flrc.addIndicator();
+            Flrc.checkTextForChange();
             return;
          }
-      } else if (document.activeElement.nodeName!="TEXTAREA" && !document.activeElement.contentEditable == "true") {
-         Flrc.removeIndicator();
+      } else if (document.activeElement.nodeName=="TEXTAREA" || document.activeElement.contentEditable == "true") {
+         Flrc.addIndicator();
+         Flrc.checkTextForChange();
          return;
       }
-      
-      Flrc.addIndicator();
-      Flrc.checkTextForChange();
+      else {
+         Flrc.removeIndicator();
+      }
    }
 
    static updateText() {
