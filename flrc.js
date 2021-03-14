@@ -251,6 +251,7 @@ class Flrc {
          {from: "h", toUpper: "Х", toLower: "х"}
       ];
 
+      /*
       // tests, check for implicit type conversions too! ONLY PERFORM IF DEFAULT TRANSLIT
       var testTable = [
          {"input": "Pozhaluysta", "correctOutput": "Пожалуйста"},
@@ -285,6 +286,7 @@ class Flrc {
          browser.storage.local.set({transliterations: Flrc.translitTable});
       }
       // end of tests
+      */
 
    }
 }
