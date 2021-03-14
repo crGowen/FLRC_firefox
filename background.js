@@ -3,21 +3,36 @@
 
 class FlrcBackground {
    static handleMsg(msg, sender, sendResponse) {
-      if (msg.flrcReq) {
-         if (FlrcBackground.bgActive) {
-            sendResponse({flrcActive: "t"});
-         } else {
-            sendResponse({flrcActive: "f"});
-         }
-      }
 
+      if (msg.flrcReq) {
+         var pendingUpdate = "f";
+         var isActive = "f";
+         
+         if (FlrcBackground.pendingTranslitTableUpdate) {
+            pendingUpdate = "t";
+            FlrcBackground.pendingTranslitTableUpdate = false;
+         }
+
+         if (FlrcBackground.bgActive) {
+            isActive = "t";
+         }
+
+         sendResponse({flrcActive: isActive, pendingTranslitUpdate: pendingUpdate});
+      }
+      
       if (msg.flrcUpdate) {
          FlrcBackground.bgActive = (msg.flrcUpdate=="t");
+      }
+
+      if (msg.translitTableUpdate) {
+         FlrcBackground.pendingTranslitTableUpdate = (msg.translitTableUpdate=="update");
       }
    }
 
    static init() {
       FlrcBackground.bgActive = false;
+
+      FlrcBackground.pendingTranslitTableUpdate = false;
 
       browser.runtime.onMessage.addListener(FlrcBackground.handleMsg);
 

@@ -1,11 +1,13 @@
 {
    "manifest_version": 2,
    "name": "Fast Latin-to-Russian Characters",
-   "version": "1.70",
+   "version": "2.00",
 
    "description": "Automatically converts Latin phonetics to Russian characters as you type. E.g.: 'pozhaluysta' converts to 'пожалуйста'.",
 
    "icons": {"48": "icons/FLRC_48.png"},
+
+   "permissions": ["storage"],
 
    "background": {
       "scripts": ["background.js"]
@@ -16,6 +18,10 @@
       "default_popup": "popup/popup.html",
       "default_icon": {"16": "icons/FLRC_16.png", "32": "icons/FLRC_32.png"}
    },
+
+   "options_ui": {
+      "page": "options/options.html"
+    },
 
    "web_accessible_resources": [
       "statusIcons/FLRC_48G",
