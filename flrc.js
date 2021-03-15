@@ -280,13 +280,10 @@ class Flrc {
             testsCompletedNoErrors = false;
          }
       });
-
-      if (testsCompletedNoErrors)  {
-         console.log("Tests completed. No errors!");
-         browser.storage.local.set({transliterations: Flrc.translitTable});
-      }
+*/
+      browser.storage.local.set({transliterations: Flrc.translitTable});
       // end of tests
-      */
+      
 
    }
 }
