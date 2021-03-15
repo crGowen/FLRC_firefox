@@ -1,7 +1,7 @@
 {
    "manifest_version": 2,
    "name": "Fast Latin-to-Russian Characters",
-   "version": "2.0",
+   "version": "2.01",
 
    "description": "Automatically converts Latin phonetics to Russian characters as you type. E.g.: 'pozhaluysta' converts to 'пожалуйста'.",
 

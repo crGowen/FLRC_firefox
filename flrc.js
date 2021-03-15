@@ -21,7 +21,7 @@ class Flrc {
          if (data.transliterations) {
             Flrc.translitTable = data.transliterations;
          } else {
-            console.log("FLRC cannot find update, resetting to default");
+            console.error("FLRC cannot find update, resetting to default");
             Flrc.setDefaultTranslitTable();
          }
       },
